@@ -1,16 +1,19 @@
 import React,{useState} from 'react'
-import { useGoogleSearchAPI } from '../hooks/useGoogleSearchAPI';
-import { useYoutubeSearchAPI } from '../hooks/useYoutubeSearchAPI';
+import { useRouter } from 'next/router';
 
 export const SearchInput = () => {
 
+  const router = useRouter();
   const [query,setQuery] = useState('');
-  const { refetch: refetchYT, data: dataYT } = useYoutubeSearchAPI(query)
-  const { refetch: refetchGS, data: dataGS } = useGoogleSearchAPI(query)
+
   const handleBtn = () => {
-    refetchYT();
-    refetchGS();
-    setQuery('');   
+    if(query){
+      router.push({
+        pathname: '/results',
+        query:{searchQuery:query}
+      })
+    }
+    
   }
 
   return (
