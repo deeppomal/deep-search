@@ -1,20 +1,21 @@
 import { useQuery } from 'react-query'
 import axios from 'axios'
 
-export const useArticleAPI = (data) => {
+export const useSummaryAPI = (data) => {
     return useQuery(
-        ["article",data.title],
+        ["summary",data.title],
         async () => {
             const res = await axios.request({
                 method: 'GET',
-                url: 'https://lexper.p.rapidapi.com/v1.1/extract',
+                url: 'https://meaningcloud-summarization-v1.p.rapidapi.com/summarization-1.0',
                 params: {
                   url: data.link,
-                  media: 'false'
+                  sentences: '10'
                 },
                 headers: {
-                  'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_ARTICLE_API}`,
-                  'X-RapidAPI-Host': 'lexper.p.rapidapi.com'
+                    'Accept': 'application/json',
+                    'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_ARTICLE_API}`,
+                    'X-RapidAPI-Host': 'meaningcloud-summarization-v1.p.rapidapi.com'
                 }
               });
             return res.data;

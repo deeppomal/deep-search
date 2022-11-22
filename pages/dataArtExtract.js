@@ -1,0 +1,3 @@
+const dataArtExtract = `{"article":{"text":null,"html":null,"images":[],"author":false,"pub_date":null,"is_article":1,"url":"https://positivechoices.org.au/students/what-are-illegal-drugs","canonical_url":"https://positivechoices.org.au/students/what-are-illegal-drugs","title":"What are illegal drugs?","language":null,"image":"https://positivechoices.org.au/pic/l7tpkzdfgq/4/illegal-drugs.jpg","summary":"Get the basic facts about illegal drugs, classification of different types of drugs, and how they affect the body.","modified_date":null,"site_name":"Positive Choices","favicon":"https://positivechoices.org.au/favicon.ico","encoding":"utf-8"},"time":0.002250194549560547,"js":false,"pagination":false}`
+
+export default dataArtExtract;
