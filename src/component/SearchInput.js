@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 export const SearchInput = () => {
 
   const router = useRouter();
-  const [query,setQuery] = useState('');
+  const [query,setQuery] = useState('Testing');
 
   const handleBtn = () => {
     if(query){
