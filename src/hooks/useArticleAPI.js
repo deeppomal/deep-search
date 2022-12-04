@@ -3,13 +3,13 @@ import axios from 'axios'
 
 export const useArticleAPI = (data) => {
     return useQuery(
-        ["article",data.title],
+        ["article",data?.displayLink],
         async () => {
             const res = await axios.request({
                 method: 'GET',
                 url: 'https://lexper.p.rapidapi.com/v1.1/extract',
                 params: {
-                  url: data.link,
+                  url: data?.link,
                   media: 'false'
                 },
                 headers: {
@@ -20,7 +20,8 @@ export const useArticleAPI = (data) => {
             return res.data;
         },
         {
-          refetchOnWindowFocus:false
+          refetchOnWindowFocus:false,
+          // enabled:false
         }
     );
     

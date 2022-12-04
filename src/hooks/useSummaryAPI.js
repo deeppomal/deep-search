@@ -3,14 +3,14 @@ import axios from 'axios'
 
 export const useSummaryAPI = (data) => {
     return useQuery(
-        ["summary",data.title],
+        ["summary",data?.title],
         async () => {
             const res = await axios.request({
                 method: 'GET',
                 url: 'https://meaningcloud-summarization-v1.p.rapidapi.com/summarization-1.0',
                 params: {
-                  url: data.link,
-                  sentences: '10'
+                  url: data?.link,
+                  sentences: '7'
                 },
                 headers: {
                     'Accept': 'application/json',
@@ -21,7 +21,8 @@ export const useSummaryAPI = (data) => {
             return res.data;
         },
         {
-          refetchOnWindowFocus:false
+          refetchOnWindowFocus:false,
+          // enabled:false
         }
     );
     

@@ -8,33 +8,38 @@ import { data } from 'autoprefixer';
 import dataGoogle from '../src/data/dataGoogle';
 import dataYoutube from '../src/data/dataYoutube';
 import { ResultsSearchInput } from '../src/component/ResultsSearchInput';
-import { ArticleCard } from '../src/component/ArticleCard';
 import { FirstCard } from '../src/component/FirstCard';
 import dataArtSummary from '../src/data/dataArtSummary';
 import dataArtExtract from '../src/data/dataArtExtract';
+import { ResultsList } from '../src/component/ResultsList';
+import { YoutubeList } from '../src/component/YoutubeList';
 
 
 
 const Results = () => {
 
+  
   const router = useRouter();
   const searchQuery = router.query.searchQuery;
+  const [query,setQuery] = useState(router.query.searchQuery);
 
-  // const { refetch: refetchYT, data: dataYT, isLoading:isLoadingYT} = useYoutubeSearchAPI(searchQuery)
-  // const { refetch: refetchGS, data: dataGS, isLoading:isLoadingGS } = useGoogleSearchAPI(searchQuery)  
-  const dataGS = JSON.parse(dataGoogle);
-  const dataYT = JSON.parse(dataYoutube);
-  const dataAS = JSON.parse(dataArtSummary);
-  const dataAE = JSON.parse(dataArtExtract);
 
-  console.log(dataAE)
+  // const { refetch: refetchYT, data: dataYT, isLoading:isLoadingYT} = useYoutubeSearchAPI(query)
+  const { refetch: refetchGS, data: dataGS, isLoading:isLoadingGS, isRefetching } = useGoogleSearchAPI(query)  
+  // const dataGS = JSON.parse(dataGoogle);
+  // const dataYT = JSON.parse(dataYoutube);
+  // const dataAS = JSON.parse(dataArtSummary);
+  // const dataAE = JSON.parse(dataArtExtract);
+  const onNewSearch = async (query) =>{
+    await setQuery(query)
+    refetchGS();
+  }
+  
   return (
-    <div>
-      <ResultsSearchInput />
-      {/* {
-        dataGS?.items?.slice(0,3)?.map(item=><ArticleCard data={item} key={item?.cacheTime} />)
-      } */}
-      <FirstCard data={dataAE} sum={dataAS} />
+    <div className='bg-[#191919] min-h-screen'>
+      <ResultsSearchInput onNewSearch={onNewSearch} />
+      <ResultsList data={dataGS}/>
+      {/* <YoutubeList data={dataYT} /> */}
     </div>
   )
 }
