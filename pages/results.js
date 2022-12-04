@@ -19,27 +19,35 @@ import { YoutubeList } from '../src/component/YoutubeList';
 const Results = () => {
 
   
+  
   const router = useRouter();
   const searchQuery = router.query.searchQuery;
   const [query,setQuery] = useState(router.query.searchQuery);
 
-
-  // const { refetch: refetchYT, data: dataYT, isLoading:isLoadingYT} = useYoutubeSearchAPI(query)
+ 
+  const { refetch: refetchYT, data: dataYT, isLoading:isLoadingYT} = useYoutubeSearchAPI(query)
   const { refetch: refetchGS, data: dataGS, isLoading:isLoadingGS, isRefetching } = useGoogleSearchAPI(query)  
   // const dataGS = JSON.parse(dataGoogle);
   // const dataYT = JSON.parse(dataYoutube);
   // const dataAS = JSON.parse(dataArtSummary);
   // const dataAE = JSON.parse(dataArtExtract);
   const onNewSearch = async (query) =>{
-    await setQuery(query)
+    await setQuery(query);
     refetchGS();
+    refetchYT();
+    router.push({
+      pathname: '/results',
+      query:{searchQuery:query}
+    }, 
+    undefined, { shallow: true }
+    )
   }
   
   return (
     <div className='bg-[#191919] min-h-screen'>
-      <ResultsSearchInput onNewSearch={onNewSearch} />
+      <ResultsSearchInput onNewSearch={onNewSearch} userQuery={query} />
       <ResultsList data={dataGS}/>
-      {/* <YoutubeList data={dataYT} /> */}
+      <YoutubeList data={dataYT} />
     </div>
   )
 }

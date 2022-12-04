@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 
 export const YoutubeListCard = ({data}) => {
     const opts = {
-        height: '300',
+        height: '240',
         width:'100%',
         playerVars: {
           autoplay: 0,
