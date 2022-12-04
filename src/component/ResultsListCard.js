@@ -41,7 +41,7 @@ export const ResultsListCard = ({data,index}) => {
     <div className={`flex flex-col  bg-[#2D4263] flex-1 m-2 rounded lg:overflow-hidden ${!isOpen && 'lg:h-52 h-52' } `}>
       <div className=' flex flex-row items-center justify-between ml-3 mr-3 mt-3'>
         <p className='text-[#EEEEEE] font-bold font-sans lg:text-xl text-lg w-9/12 text-ellipsis overflow-hidden whitespace-nowrap '>{dataAE?.article?.title}</p>
-        <a href={data.link} target={'_blank'} className='text-[#EEEEEE] underline underline-offset-4 text-xs lg:text-sm hover:cursor-pointer'>Visit Article</a>
+        <a href={data.link} target={'_blank'} rel="noreferrer" className='text-[#EEEEEE] underline underline-offset-4 text-xs lg:text-sm hover:cursor-pointer'>Visit Article</a>
       </div>
       
       <p className='text-[#C84B31] font-medium text-sm ml-3 mr-3'>{dataAE?.article?.site_name}</p>
