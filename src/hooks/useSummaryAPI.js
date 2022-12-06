@@ -1,28 +1,16 @@
 import { useQuery } from 'react-query'
 import axios from 'axios'
 
-export const useSummaryAPI = (data) => {
+export const useSummaryAPI = (articleData) => {
+    let articleLink = articleData?.link
     return useQuery(
-        ["summary",data?.title],
+        ["summary",articleData?.title],
         async () => {
-            const res = await axios.request({
-                method: 'GET',
-                url: 'https://meaningcloud-summarization-v1.p.rapidapi.com/summarization-1.0',
-                params: {
-                  url: data?.link,
-                  sentences: '7'
-                },
-                headers: {
-                    'Accept': 'application/json',
-                    'X-RapidAPI-Key': `${process.env.ARTICLE_API}`,
-                    'X-RapidAPI-Host': 'meaningcloud-summarization-v1.p.rapidapi.com'
-                }
-              });
+            const res = await axios.get(`/.netlify/functions/fetch-as-res?articleLink=${articleLink}`);
             return res.data;
         },
         {
           refetchOnWindowFocus:false,
-          // enabled:false
         }
     );
     

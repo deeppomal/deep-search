@@ -5,7 +5,7 @@ export const useYoutubeSearchAPI = (query) => {
     return useQuery(
         "youtube",
         async () => {
-          const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${query}&key=${process.env.GOOGLE_API}`);
+          const res = await axios.get(`/.netlify/functions/fetch-yt-res?query=${query}`);
           return res.data;
         },
         {

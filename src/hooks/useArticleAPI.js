@@ -5,18 +5,8 @@ export const useArticleAPI = (data) => {
     return useQuery(
         ["article",data?.displayLink],
         async () => {
-            const res = await axios.request({
-                method: 'GET',
-                url: 'https://lexper.p.rapidapi.com/v1.1/extract',
-                params: {
-                  url: data?.link,
-                  media: 'false'
-                },
-                headers: {
-                  'X-RapidAPI-Key': `${process.env.ARTICLE_API}`,
-                  'X-RapidAPI-Host': 'lexper.p.rapidapi.com'
-                }
-              });
+          const res = await axios.get(`/.netlify/functions/fetch-ae-res?articleLink=${data?.link}`);
+            
             return res.data;
         },
         {

@@ -5,7 +5,7 @@ export const useGoogleSearchAPI = (query) => {
     return useQuery(
         "google-search",
         async () => {
-          const res = await axios.get(`https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API}&cx=45dc534a1d2f44b16&q=${query} -wikipedia -youtube`);
+          const res = await axios.get(`/.netlify/functions/fetch-g-res?query=${query}`);
           return res.data;
         },
         {
