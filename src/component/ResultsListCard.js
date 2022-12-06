@@ -55,4 +55,3 @@ export const ResultsListCard = ({data,index}) => {
     </div>
   )
 }
-// C84B31

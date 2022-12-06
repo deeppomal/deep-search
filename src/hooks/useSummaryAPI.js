@@ -14,7 +14,7 @@ export const useSummaryAPI = (data) => {
                 },
                 headers: {
                     'Accept': 'application/json',
-                    'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_ARTICLE_API}`,
+                    'X-RapidAPI-Key': `${process.env.ARTICLE_API}`,
                     'X-RapidAPI-Host': 'meaningcloud-summarization-v1.p.rapidapi.com'
                 }
               });

@@ -13,7 +13,7 @@ export const useArticleAPI = (data) => {
                   media: 'false'
                 },
                 headers: {
-                  'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_ARTICLE_API}`,
+                  'X-RapidAPI-Key': `${process.env.ARTICLE_API}`,
                   'X-RapidAPI-Host': 'lexper.p.rapidapi.com'
                 }
               });
